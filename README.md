@@ -5,5 +5,11 @@ Monitors a git repo for changes via git status & notifies you when changes show 
 ## Usage
 
 ```javascript
-git-status-monitor {Project Root Folder} {Files to watch changes on} {Send Alert To Email Address} {Send Alert From Email Address} {Title of Project}
+git-status-monitor $Project_Directory $Files_To_Watch $Send_Alert_To $Send_Alert_From $Project_Title
+```
 
+### Example
+
+```javascript
+git-status-monitor /var/www/wp_site .htaccess,wp-config.php dev@example.org,sys@example.org alerts@example.org "My WP Site"
+```

@@ -1,0 +1,40 @@
+{
+  "name": "git-status-monitor",
+  "version": "1.0.0",
+  "description": "Monitors a git repo for changes via git status & notifies you when changes show up via email. Useful for monitoring files for unexpected changes in production.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "ungana",
+  "license": "MIT",
+  "dependencies": {
+    "email-templates": "^1.3.0",
+    "handlebars": "^3.0.3",
+    "nodemailer": "^1.4.0"
+  },
+  "keywords": [
+    "git",
+    "status",
+    "monitor",
+    "change",
+    "detection",
+    "monitoring",
+    "email",
+    "repo",
+    "repository",
+    "intrusion"
+  ],
+  "homepage": "https://github.com/ungana/git-status-monitor",
+  "bugs": {
+    "url": "https://github.com/ungana/git-status-monitor/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ungana/git-status-monitor"
+  },
+  "preferGlobal": true,
+  "bin": {
+    "git-status-monitor": "./app.js"
+  }
+}

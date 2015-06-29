@@ -2,6 +2,8 @@
 
 Monitors a git repo for changes via git status & notifies you when changes show up via email. Useful for monitoring files for unexpected changes in production.
 
+**NOTE**: For the time being this command should be called from a scheduling application such as cron.
+
 ## Usage
 
 ```bash

@@ -34,11 +34,11 @@ function checkFiles (data) {
 }
 
 function init () {
-  if (!process.argv[argv_offset + 0]) {
+  if (!process.argv[argv_offset]) {
     console.error('No folder to watch was provided.');
     return;
   }
-  folder_to_watch = process.argv[argv_offset + 0];
+  folder_to_watch = process.argv[argv_offset];
 
   if (!process.argv[argv_offset + 1]) {
     console.error('No files to watch were provided.');
@@ -94,7 +94,12 @@ function sendAlert () {
           from: notify_email_from,
           to: user,
           subject: 'File Change Alert: ' + project_name,
-          text: text
+          text: text,
+          headers: {
+            "x-priority": "1",
+            "x-msmail-priority": "High",
+            importance: "high"
+          }
         });
       });
     });

@@ -16,8 +16,6 @@ var git_status_process;
 var git_status_text;
 var changes_found = [];
 
-// node app.js /Users/ungana/Documents/Rampart/Repos/RegattaCentral/Regattas-Cordova-2015 www/index.html,www/config.xml joshua@ramparthosting.com,joshua@ungana.com support@ramparthosting.com "RC Cordova 2015"
-
 function checkFiles (data) {
   git_status_text = data;
   data.split('\n').forEach(function (line) {

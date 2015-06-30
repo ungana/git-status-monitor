@@ -61,7 +61,7 @@ git-status-monitor /var/www/wp_site .htaccess,wp-content/* dev@example.org,sys@e
 > - Fixed an issue where the email sent did not include the files that triggered the alert at the top.
 > - Now checks to see if nothing has changed.
 > 
-> ## [0.2.0] - 2015-06-29
+> ## [0.1.0] - 2015-06-29
 > ### Added
 > - Initial Project Upload
 

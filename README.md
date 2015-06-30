@@ -60,3 +60,8 @@ git-status-monitor /var/www/wp_site .htaccess,wp-content/* dev@example.org,sys@e
 > ## [0.2.0] - 2015-06-29
 > ### Added
 > - Initial Project Upload
+
+
+## License
+
+Git Status Manager is released under the [MIT License](http://www.opensource.org/licenses/MIT).

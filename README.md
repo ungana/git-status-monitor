@@ -67,4 +67,4 @@ git-status-monitor /var/www/wp_site .htaccess,wp-content/* dev@example.org,sys@e
 
 ## License
 
-Git Status Manager is released under the [MIT License](http://www.opensource.org/licenses/MIT).
+Git Status Monitor is released under the [MIT License](http://www.opensource.org/licenses/MIT).

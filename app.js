@@ -17,12 +17,12 @@ var git_status_text;
 var changes_found = [];
 
 function checkFiles (data) {
-  git_status_text = data;
   data.split('\n').forEach(function (line) {
     files_to_watch.forEach(function (file_to_watch) {
-      var search_string = '\\s+' + file_to_watch + '$';
+      file_to_watch = file_to_watch.replace(/^\/|\/$/g, '');
+      var search_string = (file_to_watch.indexOf('*') > -1) ? '\\s' + file_to_watch.replace(/\*/g, '') + '.*' : '\\s+' + file_to_watch + '$';
       if (line.trim().match(new RegExp(search_string, 'im'))) {
-        changes_found.push(line.trim() + ' == ' + file_to_watch);
+        changes_found.push(line.trim());
       }
     });
   });
@@ -62,11 +62,12 @@ function init () {
   }
   project_name = process.argv[argv_offset + 4];
 
-  git_status_process = child_process('git --git-dir=' + folder_to_watch + '/.git status', function (error, stdout, stderr) {
+  git_status_process = child_process('git --git-dir=' + folder_to_watch + '/.git --work-tree=' + folder_to_watch + ' status', function (error, stdout, stderr) {
     if (stderr) {
       console.error(stderr);
     }
     else {
+      git_status_text = stdout;
       checkFiles(stdout);
     }
   });
@@ -81,7 +82,7 @@ function sendAlert () {
 
     template('alert', {
       project_name: project_name,
-      issue_found_array: '',
+      changes_found: changes_found,
       git_status: git_status_text
     }, function (error, html, text) {
       if (error) console.error(error);

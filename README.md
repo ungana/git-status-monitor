@@ -4,6 +4,12 @@ Monitors a git repo for changes via git status & notifies you when changes show 
 
 **NOTE**: For the time being this command should be called from a scheduling application such as cron.
 
+## Installation
+
+```bash
+npm install -g git-status-monitor
+```
+
 ## Usage
 
 ```bash

@@ -1,9 +1,13 @@
+{{#if show_flagged}}
 The following files being watched show changes on: {{{ project_name }}}
 
 {{#each changes_found }}
 * {{ this }}
 {{/each}}
+{{else}}
+Changes were made to the repo for project: {{{ project_name }}}
 
+{{/if}}
 
 ================================================
  Git Status Output

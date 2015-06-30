@@ -17,17 +17,24 @@ var git_status_text;
 var changes_found = [];
 
 function checkFiles (data) {
-  data.split('\n').forEach(function (line) {
-    files_to_watch.forEach(function (file_to_watch) {
-      file_to_watch = file_to_watch.replace(/^\/|\/$/g, '');
-      var search_string = (file_to_watch.indexOf('*') > -1) ? '\\s' + file_to_watch.replace(/\*/g, '') + '.*' : '\\s+' + file_to_watch + '$';
-      if (line.trim().match(new RegExp(search_string, 'im'))) {
-        changes_found.push(line.trim());
+  if (data.indexOf('nothing to commit, working directory clean') === -1) {
+    if (files_to_watch.indexOf('$') > -1) {
+      sendAlert(false);
+    }
+    else {
+      data.split('\n').forEach(function (line) {
+        files_to_watch.forEach(function (file_to_watch) {
+          file_to_watch = file_to_watch.replace(/^\/|\/$/g, '');
+          var search_string = (file_to_watch.indexOf('*') > -1) ? '\\s' + file_to_watch.replace(/\*/g, '') + '.*' : '\\s+' + file_to_watch + '$';
+          if (line.trim().match(new RegExp(search_string, 'im'))) {
+            changes_found.push(line.trim());
+          }
+        });
+      });
+      if (changes_found.length > 0) {
+        sendAlert(true);
       }
-    });
-  });
-  if (changes_found.length > 0) {
-    sendAlert();
+    }
   }
 }
 
@@ -73,7 +80,7 @@ function init () {
   });
 }
 
-function sendAlert () {
+function sendAlert (show_flagged) {
   emailTemplates('templates', {
     helpers: require('./helpers/handlebars.helpers'),
     partials: require('./partials/handlebars.partials')
@@ -83,7 +90,8 @@ function sendAlert () {
     template('alert', {
       project_name: project_name,
       changes_found: changes_found,
-      git_status: git_status_text
+      git_status: git_status_text,
+      show_flagged: show_flagged
     }, function (error, html, text) {
       if (error) console.error(error);
 

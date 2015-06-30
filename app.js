@@ -17,7 +17,7 @@ var git_status_text;
 var changes_found = [];
 
 function checkFiles (data) {
-  if (data.indexOf('nothing to commit, working directory clean') === -1) {
+  if ((data.indexOf('nothing to commit, working directory clean') === -1) && (data.indexOf('Initial commit') === -1)) {
     if (files_to_watch.indexOf('$') > -1) {
       sendAlert(false);
     }
@@ -72,6 +72,7 @@ function init () {
   git_status_process = child_process('git --git-dir=' + folder_to_watch + '/.git --work-tree=' + folder_to_watch + ' status', function (error, stdout, stderr) {
     if (stderr) {
       console.error(stderr);
+      sendError(stderr);
     }
     else {
       git_status_text = stdout;
@@ -92,6 +93,37 @@ function sendAlert (show_flagged) {
       changes_found: changes_found,
       git_status: git_status_text,
       show_flagged: show_flagged
+    }, function (error, html, text) {
+      if (error) console.error(error);
+
+      notify_email_to.forEach(function (user) {
+        var transporter = nodemailer.createTransport();
+        transporter.sendMail({
+          from: notify_email_from,
+          to: user,
+          subject: 'File Change Alert: ' + project_name,
+          text: text,
+          headers: {
+            "x-priority": "1",
+            "x-msmail-priority": "High",
+            importance: "high"
+          }
+        });
+      });
+    });
+  });
+}
+
+function sendError (script_error) {
+  emailTemplates('templates', {
+    helpers: require('./helpers/handlebars.helpers'),
+    partials: require('./partials/handlebars.partials')
+  }, function (error, template) {
+    if (error) console.error(error);
+
+    template('error', {
+      project_name: project_name,
+      error: script_error
     }, function (error, html, text) {
       if (error) console.error(error);
 

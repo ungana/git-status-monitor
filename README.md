@@ -44,7 +44,10 @@ git-status-monitor /var/www/wp_site .htaccess,wp-content/* dev@example.org,sys@e
 
 > ## [0.2.1] - 2015-06-30
 > ### Added
-> - Change Log
+> - CHANGELOG.md
+> 
+> ### Changed
+> - README.md (Added CHANGELOG & License)
 > 
 > ## [0.2.0] - 2015-06-30
 > ### Added

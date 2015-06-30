@@ -1,11 +1,12 @@
 # Change Log
 
-## [0.2.1] - 2015-06-30
+## [0.2.3] - 2015-06-30
 ### Added
 - CHANGELOG.md
 
 ### Changed
 - README.md (Added CHANGELOG & License)
+- Version number skipped a few to sync up repo version & NPM (my mistake).
 
 ## [0.2.0] - 2015-06-30
 ### Added

@@ -42,6 +42,10 @@ git-status-monitor /var/www/wp_site .htaccess,wp-content/* dev@example.org,sys@e
 
 ## Change Log
 
+> ## [0.2.4] - 2015-07-05
+> ### Fixed
+> - Fixed an issue where on some systems the application could not locate the email templates folder. 
+> 
 > ## [0.2.3] - 2015-06-30
 > ### Added
 > - CHANGELOG.md

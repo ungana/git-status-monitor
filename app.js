@@ -82,7 +82,7 @@ function init () {
 }
 
 function sendAlert (show_flagged) {
-  emailTemplates('templates', {
+  emailTemplates(__dirname + '/templates', {
     helpers: require('./helpers/handlebars.helpers'),
     partials: require('./partials/handlebars.partials')
   }, function (error, template) {
@@ -115,7 +115,7 @@ function sendAlert (show_flagged) {
 }
 
 function sendError (script_error) {
-  emailTemplates('templates', {
+  emailTemplates(__dirname + '/templates', {
     helpers: require('./helpers/handlebars.helpers'),
     partials: require('./partials/handlebars.partials')
   }, function (error, template) {
